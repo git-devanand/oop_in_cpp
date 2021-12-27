@@ -2,13 +2,43 @@
 using namespace std;
 
 class Employee {
-
-    // public class attibute which can be accessible publicly.
-    public:
-        // class attributes
+    // private access modifier which are only accessible only within the class
+    private:
+        // Incapsulaiton of class attributes
         string Name;
         string Company;
         int Age;
+
+    // public access modefier which can be accessible publicly.
+    public:
+        void setName(string name) {// setter
+            Name = name;
+        }
+
+        string getName() {// getter
+            return Name;
+        }
+
+        void setCompany(string company)
+        { // setter
+            Company = company;
+        }
+
+        string getCompany()
+        { // getter
+            return Company;
+        }
+
+        void setAge(int age)
+        { // setter
+            if (age >= 18)
+                Age = age;
+        }
+
+        int getAge()
+        { // getter
+            return Age;
+        }
 
     // Methods of this class
      void IntroduceYourself() {
@@ -18,9 +48,9 @@ class Employee {
         
              }
 
-             // Consturctor is a method/function which have not any return type
-             // constructor has the same name as the class name belongs to
-             // Almost always constructors should be use as public
+     // Consturctor is a method/function which have not any return type
+     // constructor has the same name as the class name belongs to
+     // Almost always constructors should be use as public
 
     Employee(string name, string company, int age) {
         Name = name;
@@ -46,6 +76,12 @@ int main()
 
     Employee employee3 = Employee("Albert", "IBM", 32);
     employee3.IntroduceYourself();
-    
+
+    employee1.setAge(12);
+    cout << employee1.getName() <<" is "<<employee1.getAge()<< " years old."<<"\n";
+
+    employee2.setCompany("Microsoft");
+    cout << employee2.getName() << " join to new company named "<<employee2.getCompany()<<"\n";
+
 
 }
