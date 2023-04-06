@@ -34,25 +34,40 @@ class Solution
     public:
     
     Node* reverseKgroupLL (Node* head, int k) {
-        if (head == NULL) 
+       if (head == NULL) 
             return NULL;
         
         Node* curr = head;
         Node* prev = NULL;
         Node* next = NULL;
         int cnt = 0;
-        // step1 done in which reversing the linked list in k lenght
-        while (curr != NULL && cnt < k) {
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-            cnt++;
+
+        int x = k;
+        Node* temp = head;
+        while (x > 0 && temp != NULL) 
+        {
+            temp = temp->next;
+            x--;
         }
 
-        // step2 by recursion solve the remaining nodes
-        head->next = reverseKgroupLL(next, k);
-        return prev;
+        if (x == 0) {
+            while (curr != NULL && cnt < k) {
+                next = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = next;
+                cnt++;
+            }
+
+            if (next != NULL) {
+                head->next = reverseKgroupLL(next, k);
+            }
+
+            return prev;
+        } else {
+            return head;
+        }
+
 
     }
     
