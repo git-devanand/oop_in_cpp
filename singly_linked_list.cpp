@@ -119,7 +119,18 @@ class LinkedList {
     Node* reverseLL(Node* &head) {
         Node* curr = head;
         Node* prev = NULL;
-        reverse(head,curr,prev);
+        // reverse(head,curr,prev);
+        if (head == NULL || head->next == NULL) 
+            return head;
+        
+        while (curr != NULL)
+        {
+            Node* forward = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+        }
+        head = prev;
         return head;
     }
 
