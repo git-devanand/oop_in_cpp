@@ -1,4 +1,5 @@
 #include<iostream>
+#include<map>
 using namespace std;
 
 class Node {
@@ -134,6 +135,21 @@ class LinkedList {
         return head;
     }
 
+    bool detectLoop (Node* head) {
+        if (head == NULL)
+            return false;
+
+        Node* temp = head;
+        map <Node*, bool> mp;
+        while (temp != NULL && temp->next != head) 
+        {
+            if (mp[temp])
+                return true;
+            temp = temp->next;
+        }
+        return false;
+    }
+
     void printLL(Node* &head) {
         Node* node = head;
         while (node != NULL) {
@@ -174,12 +190,14 @@ int main ()
     // cout << "Tail -> " << tail->data << "\n";
     // ll.deleteNodeByPosition(head, 4);
 
-    ll.printLL(head);
-    cout << "Head -> " << head->data << "\n";
-    cout << "Tail -> " << tail->data << "\n";
+    // ll.printLL(head);
+    // cout << "Head -> " << head->data << "\n";
+    // cout << "Tail -> " << tail->data << "\n";
 
-    ll.reverseLL(head);
-    ll.printLL(head);
+    // ll.reverseLL(head);
+    // ll.printLL(head);
+
+    ll.detectLoop(head)? cout<<"Loop is present\n" : cout <<"Loop is not present\n";
     cout << "Head -> " << head->data << "\n";
     cout << "Tail -> " << tail->data << "\n";
     cout << "Size of Linked List: " << ll.lenLL(head) << "\n";
